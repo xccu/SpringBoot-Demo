@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>表格操作 - layui</title>
+
+    <link rel="stylesheet" href="/css/layui.css">
+
+    <style>
+        body{padding: 20px; /*overflow-y: scroll;*/}
+    </style>
+</head>
+<body>
+
+
+<div class="demoTable">
+    搜索姓名：
+    <div class="layui-inline">
+        <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+    </div>
+    <button class="layui-btn" data-type="reload" id="demoReloadBtn">搜索</button>
+</div>
+<table id="test" lay-filter="test"></table>
+
+<script type="text/html" id="barDemo">
+    <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="idCard">ID卡</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<button class="layui-btn" data-type="reload" id="loadBtn">加载</button>
+<table id="test2" lay-filter="test2"></table>
+
+<div class="layui-btn-group">
+    <button class="layui-btn" data-type="parseTable">转化为数据表格</button>
+</div>
+
+<table id="test3"></table>
+
+
+</div>
+
+<script src="/layui.js" charset="utf-8"></script>
+<script src="/js/jquery.min.js" charset="utf-8"></script>
+<script th:inline="none">
+
+    /*$('#demoReloadBtn').on('click', function(){
+        //重新加载table
+        var name = $('#demoReload').val();
+
+        table.reload(
+            'test'  //layui ID
+            ,{url:'layui/user/getByName?'+name} //http请求，通过name参数筛选
+        );
+    });*/
+
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'               //html元素ID
+            ,id:'test'                  //layui ID
+            ,url:'user/all'        //数据接口请求地址
+            ,toolbar: '#toolbarDemo'    //开启头部工具栏，并为其绑定左侧模板
+            ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示'
+                ,layEvent: 'LAYTABLE_TIPS'
+                ,icon: 'layui-icon-tips'
+            }]
+            ,title: '用户数据表'
+            ,width: 1000
+            ,height: 450
+            ,cols: [[ //标题栏
+                {type: 'checkbox', width: 50,LAY_CHECKED: true}
+                ,{field: 'id', title: 'ID', width: 140, sort: true}
+                ,{field: 'name', title: '姓名', width: 100}
+                ,{field: 'sex', title: '性别', width: 80}
+                ,{field: 'power', title: '权限', width: 60,value:'aaa'}
+                ,{field: 'age', title: '年龄', width: 60}
+                ,{field: 'email', title: '邮箱', width: 160}
+                ,{field: 'tel', title: '电话', width: 160}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
+
+            ]]
+            ,page: true
+            ,limits: [3,5,10]
+            ,limit: 5 //每页默认显示的数量
+            /*,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据，res为从url中get到的数据
+                var result;
+                console.log(this);
+                console.log(JSON.stringify(res));
+                //通过前端分页
+                if(this.page.curr){
+                    result = res.data.slice(this.limit*(this.page.curr-1),this.limit*this.page.curr);
+                }
+                else{
+                    result=res.data.slice(0,this.limit);
+                }
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.count, //解析数据长度
+                    "data": result //解析数据列表
+                };
+            }*/
+        });
+
+        table.render({
+            elem: '#test2'
+            ,id: 'test2'
+            ,width: 500
+            ,height: 312
+            //,url: 'user/all' //数据接口
+            ,page: true //开启分页
+            ,cols: [[ //标题栏
+                {field: 'id', title: 'ID', width: 80}
+                ,{field: 'name', title: '姓名', width: 120}
+                ,{field: 'sex', title: '性别', width: 80}
+                ,{field: 'age', title: '年龄', width: 80}
+            ]]
+        });
+
+        //直接赋值数据
+        table.render({
+            elem: '#test3'
+            ,width: 600
+            //,height: 274
+            ,cols: [[ //标题栏
+                {type: 'checkbox', LAY_CHECKED: true}
+                ,{field: 'id', title: 'ID', width: 80, sort: true}
+                ,{field: 'name', title: '姓名', width: 120}
+                ,{field: 'sex', title: '性别', width: 80}
+                ,{field: 'age', title: '年龄', width: 80}
+                ,{type: 'space', width: 100} //空列
+
+            ]]
+            ,data: [
+                {"id":1,"name":"Weslie","age":12,"sex":"male"},
+                {"id":2,"name":"Wolffy","age":34,"sex":"male"},
+                {"id":3,"name":"Tibbie","age":11,"sex":"female"},
+                {"id":4,"name":"Sparky","age":12,"sex":"male"},
+                {"id":5,"name":"Paddi","age":10,"sex":"male"}
+            ]
+
+            ,skin: 'row' //表格风格
+            ,even: true
+            //,size: 'lg' //尺寸
+
+            ,page: true //是否显示分页
+            ,limits: [3,5,10]
+            ,limit: 3 //每页默认显示的数量
+            //,loading: false //请求数据时，是否显示loading
+        });
+
+        $('#demoReloadBtn').on('click', function(){
+            //重新加载table
+            var name = $('#demoReload').val();
+
+            table.reload(
+                'test'  //layui ID
+                ,{url:'/user/getByName?name='+name} //http请求，通过name参数筛选:http://localhost:8080/layui/user/getByName?name={name}
+            );
+        });
+
+        /*$('#demoReloadBtn').on('click', function(){
+            var demoReload = $('#demoReload').val();
+
+            //执行重载
+            table.reload(
+                'test'
+                ,{where: {id:demoReload}}
+            );
+        });*/
+
+        $('#loadBtn').on('click', function(){
+            //重新加载table
+            table.reload(
+                'test2'  //layui ID
+                ,{url:'user/all'} //http请求：http://localhost:8080/layui/user/all
+            );
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'del'){  //删除事件
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            }
+            else if(obj.event === 'edit'){  //update事件
+
+                layer.open({
+                    title:'编辑',
+                    type: 2,
+                    skin: 'layui-layer-rim',
+                    area: ['800px', '560px'],
+                    content: 'user/?id='+data.id
+                });
+
+                /*layer.prompt({
+                    formType: 2
+                    ,value: data.age
+                }, function(value, index){
+                    obj.update({
+                        age: value
+                    });
+                    layer.close(index);
+                });*/
+            }
+            else if(obj.event === 'detail'){
+                layer.open({
+                    title:'用户详细信息',
+                    type: 2,
+                    skin: 'layui-layer-rim',
+                    area: ['500px', '320px'],
+                    content: 'user/detail/?id='+data.id
+                });
+            }
+            else if(obj.event === 'idCard'){
+                layer.open({
+                    title:'',
+                    type: 2,
+                    skin: 'layui-layer-rim',
+                    area: ['428px', '270px'],
+                    content: 'user/idCard/?id='+data.id
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

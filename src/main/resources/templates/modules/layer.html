@@ -1,0 +1,223 @@
+ 
+ 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>layer弹层 - layui</title>
+
+<link rel="stylesheet" href="/css/layui.css">
+
+</head>
+
+<body style="margin: 15px">
+<fieldset class="layui-elem-field layui-field-title site-demo-button" style="margin-top: 30px;">
+ <legend>简单例子</legend>
+</fieldset>
+<button class="layui-btn layui-btn-primary demo" data-type="test">Alert</button>
+<button class="layui-btn demo" data-type="test2">Confirm</button>
+<button class="layui-btn demo" data-type="test3">Msg</button>
+<button class="layui-btn demo" data-type="test4">Tips</button>
+<button class="layui-btn demo" data-type="test5">Page</button>
+<button class="layui-btn demo" data-type="test6">Iframe</button>
+<button class="layui-btn demo" data-type="test7">Prompt</button>
+<button class="layui-btn demo" data-type="test8">Tab</button>
+<a href="http://layer.layui.com/" target="_blank" class="layui-btn demo">更多例子</a>
+
+<fieldset class="layui-elem-field layui-field-title site-demo-button" style="margin-top: 30px;">
+ <legend>特殊例子</legend>
+</fieldset>
+
+<div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
+ <blockquote class="layui-elem-quote layui-quote-nm">
+  Tips：为了更清晰演示，每触发下述一个例子之前，都会关闭所有已经演示的层
+ </blockquote>
+ <button data-method="setTop" class="layui-btn">多窗口模式，层叠置顶</button>
+ <button data-method="confirmTrans" class="layui-btn">配置一个透明的询问框</button>
+ <button data-method="notice" class="layui-btn">示范一个公告层</button>
+ <button data-method="offset" data-type="t" class="layui-btn layui-btn-normal">上弹出</button>
+ <button data-method="offset" data-type="r" class="layui-btn layui-btn-normal">右弹出</button>
+ <button data-method="offset" data-type="b" class="layui-btn layui-btn-normal">下弹出</button>
+ <button data-method="offset" data-type="l" class="layui-btn layui-btn-normal">左弹出</button>
+ <button data-method="offset" data-type="lt" class="layui-btn layui-btn-normal">左上弹出</button>
+ <button data-method="offset" data-type="lb" class="layui-btn layui-btn-normal">左下弹出</button>
+ <button data-method="offset" data-type="rt" class="layui-btn layui-btn-normal">右上弹出</button>
+ <button data-method="offset" data-type="rb" class="layui-btn layui-btn-normal">右下弹出</button>
+ <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">居中弹出</button>
+</div>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+ <legend>相关</legend>
+</fieldset>
+<a class="layui-btn layui-btn-normal" href="https://www.layui.com/doc/modules/layer.html" target="_blank">layer文档</a>
+
+<div id="test11111" style="display: none;padding: 20px;">
+ 123
+</div>
+
+
+<script src="/layui.js"></script>
+<script src="/js/jquery.min.js" charset="utf-8"></script>
+<script th:inline="none">
+layui.use('layer', function(){
+  var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+  
+  //触发事件
+  var active = {
+   //普通例子部分
+    test: function(){
+      layer.alert('你好么，体验者');
+    }
+    ,test2: function(){
+      layer.confirm('您是如何看待前端开发？', {
+        btn: ['重要','奇葩'] //按钮
+      }, function(){
+        layer.msg('的确很重要', {icon: 1});
+      }, function(){
+        layer.msg('也可以这样', {
+          time: 20000, //20s后自动关闭
+          btn: ['明白了', '知道了']
+        });
+      });
+    }
+    ,test3: function(){
+      layer.msg('玩命提示中');
+    }
+    ,test4: function(){
+      layer.tips('Hi，我是一个小提示', this, {tips: 1});
+    }
+    ,test5: function(){
+       layer.open({
+        title:'更新论坛信息',
+        type: 1,
+        skin: 'layui-layer-rim', 
+        area: ['500px', '580px'], 
+        content: $('#test11111')
+      });
+    }
+    ,test6: function(){
+      layer.open({
+        type: 2
+        ,content: 'http://fly.layui.com/'
+        ,area: ['375px', '500px']
+        ,maxmin: true
+      });
+    }
+    ,test7: function(){
+      layer.prompt({title: '输入任何口令，并确认', formType: 1}, function(pass, index){
+        layer.close(index);
+        layer.prompt({title: '随便写点啥，并确认', formType: 2}, function(text, index){
+          layer.close(index);
+          layer.msg('演示完毕！您的口令：'+ pass +'<br>您最后写下了：'+text);
+        });
+      });
+    }
+    ,test8: function(){
+      layer.tab({
+        area: ['600px', '300px'],
+        tab: [{
+          title: 'TAB1', 
+          content: '内容1'
+        }, {
+          title: 'TAB2', 
+          content: '内容2'
+        }, {
+          title: 'TAB3', 
+          content: '内容3'
+        }]
+      });
+    },
+
+
+    //特殊例子部分
+    setTop: function(){
+    var that = this;
+    //多窗口模式，层叠置顶
+    layer.open({
+     type: 2 //此处以iframe举例
+     ,title: '当你选择该窗体时，即会在最顶端'
+     ,area: ['390px', '260px']
+     ,shade: 0
+     ,maxmin: true
+     ,offset: [ //为了演示，随机坐标
+      Math.random()*($(window).height()-300)
+      ,Math.random()*($(window).width()-390)
+     ]
+     ,content: '//layer.layui.com/test/settop.html'
+     ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+     ,yes: function(){
+      $(that).click();
+     }
+     ,btn2: function(){
+      layer.closeAll();
+     }
+
+     ,zIndex: layer.zIndex //重点1
+     ,success: function(layero){
+      layer.setTop(layero); //重点2
+     }
+    });
+   }
+   ,confirmTrans: function(){
+    //配置一个透明的询问框
+    layer.msg('大部分参数都是可以公用的<br>合理搭配，展示不一样的风格', {
+     time: 20000, //20s后自动关闭
+     btn: ['明白了', '知道了', '哦']
+    });
+   }
+   ,notice: function(){
+    //示范一个公告层
+    layer.open({
+     type: 1
+     ,title: false //不显示标题栏
+     ,closeBtn: false
+     ,area: '300px;'
+     ,shade: 0.8
+     ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+     ,btn: ['火速围观', '残忍拒绝']
+     ,btnAlign: 'c'
+     ,moveType: 1 //拖拽模式，0或者1
+     ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br>layer ≠ layui<br><br>layer只是作为Layui的一个弹层模块，由于其用户基数较大，所以常常会有人以为layui是layerui<br><br>layer虽然已被 Layui 收编为内置的弹层模块，但仍然会作为一个独立组件全力维护、升级。<br><br>我们此后的征途是星辰大海 ^_^</div>'
+     ,success: function(layero){
+      var btn = layero.find('.layui-layer-btn');
+      btn.find('.layui-layer-btn0').attr({
+       href: 'http://www.layui.com/'
+       ,target: '_blank'
+      });
+     }
+    });
+   }
+   ,offset: function(othis){
+    var type = othis.data('type'),text = othis.text();
+
+    layer.open({
+     type: 1
+     ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+     ,id: 'layerDemo'+type //防止重复弹出
+     ,content: '<div style="padding: 20px 100px;">'+ text +'</div>'
+     ,btn: '关闭全部'
+     ,btnAlign: 'c' //按钮居中
+     ,shade: 0 //不显示遮罩
+     ,yes: function(){
+      layer.closeAll();
+     }
+    });
+   }
+
+  };
+
+
+  $('.demo').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+
+ $('#layerDemo .layui-btn').on('click', function(){
+  var othis = $(this), method = othis.data('method');
+  active[method] ? active[method].call(this, othis) : '';
+ });
+});
+</script>
+</body>
+</html>

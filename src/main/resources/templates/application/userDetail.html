@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/css/layui.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <title>用户信息</title>
+</head>
+<body>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>用户信息</legend>
+</fieldset>
+<div class="layui-col-md4 layui-col-sm6" style="width: 420px;margin-left:50px">
+    <div class="layadmin-contact-box">
+        <div class="layui-col-md4 layui-col-sm6" style="width: 166px; height: 166px;float: left">
+            <a href="javascript:;">
+                <div class="layadmin-text-center" >
+                    <img th:src="${user.avatarUrl}" class="layui-nav-img" style="width: 133px; height: 133px">
+                </div>
+            </a>
+        </div>
+
+        <div class="layui-col-md8 layadmin-padding-left20 layui-col-sm6" style="width: 250px;float: right">
+            <a href="javascript:;">
+                <h3 class="layadmin-title" style="margin-top: 10px">
+                    <strong> [[${user.name}]]</strong>
+                </h3>
+                <p class="layadmin-textimg">
+                    Admin
+                </p>
+            </a>
+            <div class="layadmin-address" style="margin-top: 15px">
+
+                    <strong>[[${user.sex}]] [[${user.age}]]</strong>
+                    <br >[[${user.email}]]<br>Weibo: https://weibo.com/<br>
+                    <addr title="phone">Tel:</addr>
+                    (123) 456-7890
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.3.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.example</groupId>
+    <artifactId>springmvc-layui-demo</artifactId>
+    <version>0.0.1</version>
+    <name>springmvc-layui-demo</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!--web相关依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--thymeleaf模板引擎依赖，用于视图解析-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!--lombok依赖-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.2.3</version>
+            <classifier>jdk15</classifier><!-- 指定jdk版本 -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <!--执行package指令时打包为war（默认打包为jar）-->
+    <packaging>jar</packaging>
+
+    <!--编译配置-->
+    <!--<build>
+        &lt;!&ndash;生成jar/war包的名称&ndash;&gt;
+        <finalName>springmvc-layui-demo</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>-->
+
+    <!--编译配置-->
+    <build>
+        <finalName>springmvc-layui-demo</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>application.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>templates/**</include>
+                    <include>static/**</include>
+                    <include>mapper/**</include>
+                    <include>freemark/**</include>
+                    <include>application.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- 分离打包开始 -->
+            <!-- 跳过测试代码 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <!-- maven打包成jar的插件 -->
+            <!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <!-- 把target/classes/下的文件导入到jar内 -->
+                    <classesDirectory>target/classes/</classesDirectory>
+                    <finalName>${project.artifactId}-${project.version}</finalName>
+                    <archive>
+                        <manifest>
+                            <!-- 指定程序入口 -->
+                            <mainClass>com.example.demo.DemoApplication</mainClass>
+                            <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <addClasspath>true</addClasspath>
+                            <!-- 服务依赖的jar包放在lib目录下 -->
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <!--MANIFEST.MF 中 Class-Path 加入资源文件目录 -->
+                            <Class-Path>./resources/</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                    <!-- jar包中不包括以下文件 -->
+                    <excludes>
+                        <exclude>mapper/**</exclude>
+                        <exclude>static/**</exclude>
+                        <exclude>templates/**</exclude>
+                        <exclude>**/*.yml</exclude>
+                        <exclude>**/*.xml</exclude>
+                        <exclude>**/*.properties</exclude>
+                    </excludes>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                </configuration>
+            </plugin>
+            <!-- 分离打包关键代码 maven-dependency-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <type>jar</type>
+                            <includeTypes>jar</includeTypes>
+                            <!-- 存放服务依赖的jar包，存放在服务相同目录的lib文件夹下 -->
+                            <outputDirectory>
+                                ${project.build.directory}/lib
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 分离打包关键代码 maven-resources-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 指定resources文件 -->
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <!-- 分环境过滤开启 -->
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>application.yml</include>
+                                        <!-- 分环境配置文件不用可删除 -->
+                                        <!-- <include>application-${profiles.active}.yml</include> -->
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <!-- 分环境过滤关闭 -->
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>templates/**</include>
+                                        <include>static/**</include>
+                                        <include>mapper/**</include>
+                                        <include>freemark/**</include>
+                                        <include>application.properties</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <!-- 输出路径 -->
+                            <outputDirectory>${project.build.directory}/resources</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 分离打包结束 -->
+        </plugins>
+    </build>
+
+</project>

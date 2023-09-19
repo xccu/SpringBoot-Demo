@@ -1,0 +1,241 @@
+ 
+ 
+<!DOCTYPE html>
+<html>
+<head id="h-admin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>layout 后台大布局 - Layui</title>
+<link rel="stylesheet" href="/css/layui.css">
+<!--<link id="l-style" rel="stylesheet" href="">-->
+</head>
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div id="header-logo" class="layui-logo">layui 后台布局</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item layui-hide-xs">
+        <a href="javascript:;" title="控制台">
+          <i class="layui-icon layui-icon-console"></i>
+        </a>
+      </li>
+      <li class="layui-nav-item layui-hide-xs">
+        <a href="javascript:;" title="用户">
+          <i class="layui-icon layui-icon-user"></i>
+        </a>
+      </li>
+      <li class="layui-nav-item layui-hide-xs" lay-unselect="">
+        <a href="javascript:;" layadmin-event="fullscreen" class="fullscreen" title="全屏/退出全屏">
+          <i class="layui-icon layui-icon-screen-full"></i>
+        </a>
+      </li>
+
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">样式</a>
+        <dl class="layui-nav-child">
+          <dd><a id="a-style-demo" href="javascript:;">在线示例样式</a></dd>
+          <dd><a id="a-style-temp" href="javascript:;">后台模板样式</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"  id="l-demo">
+        <a href="javascript:;">后台模板</a>
+        <dl class="layui-nav-child">
+          <dd><a href="https://www.layui.com/admin/std/dist/views/">iframe版演示</a></dd>
+          <dd><a href="https://www.layui.com/admin/pro/">单页版演示</a></dd>
+          <dd><a href="">移动端演示</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="/avatar/weslie.jpg" class="layui-nav-img">
+          Weslie
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a id = "a-userinfo" href="javascript:;">基本资料</a></dd>
+          <dd><a id ="a-idcard" href="javascript:";>ID卡</a></dd>
+          <dd><a href="javascript:;">安全设置</a></dd>
+        </dl>
+      </li>
+      <!--<li class="layui-nav-item"><a href="">退出</a></li>-->
+      <li class="layui-nav-item layui-hide-xs" lay-unselect="">
+        <a href="javascript:;" layadmin-event="about" title="关于"><i class="layui-icon layui-icon-more-vertical"></i></a>
+      </li>
+
+    </ul>
+  </div>
+  
+  <div  id="d-left" class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <div id="scroll-logo" class="layui-logo" style="display: none">layui 后台布局</div>
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item"><a class="" href="https://www.layui.com/demo/"><i class="layui-icon layui-icon-website" style="margin-right: 10px"></i>在线示例</a></li>
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;"><i class="layui-icon layui-icon-layer" style="margin-right: 10px"></i>基本元素</a>
+          <dl class="layui-nav-child">
+            <dd><a id ="a-button" href="javascript:;">按钮</a></dd>
+            <dd><a id ="a-form" href="javascript:";>表单</a></dd>
+            <dd><a id ="a-nav" href="javascript:";>导航/面包屑</a></dd>
+            <dd><a id ="a-tab" href="javascript:";>选项卡</a></dd>
+            <dd><a id ="a-icon" href="javascript:";>图标</a></dd>
+            <dd><a id ="a-badge" href="javascript:";>徽章</a></dd>
+            <dd><a id ="a-progress" href="javascript:";>进度条</a></dd>
+            <dd><a id ="a-panel" href="javascript:";>面板</a></dd>
+            <dd><a id ="a-anim" href="javascript:";>动画</a></dd>
+            <dd><a id ="a-auxiliar" href="javascript:";>辅助元素</a></dd>
+            <dd><a href="">超链接</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;"><i class="layui-icon layui-icon-component" style="margin-right: 10px"></i>组件示例</a>
+          <dl class="layui-nav-child">
+            <dd><a id="a-layer" href="javascript:;">弹出层</a></dd>
+            <dd><a id ="a-laydate" href="javascript:;">日期与时间选择</a></dd>
+            <dd><a id ="a-table" href="javascript:;">数据表格</a></dd>
+            <dd><a id ="a-upload" href="javascript:;">文件上传</a></dd>
+            <dd><a id ="a-code" href="javascript:;">代码修饰器</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;"><i class="layui-icon layui-icon-app" style="margin-right: 10px"></i>应用示例</a>
+          <dl class="layui-nav-child">
+            <dd><a id ="a-utable" href="javascript:;">用户列表</a></dd>
+            <dd><a id ="a-user" href="javascript:";>用户详细信息</a></dd>
+            <dd><a id ="a-idcard-shell" href="javascript:";>ID卡信息</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">云市场</a></li>
+        <li class="layui-nav-item"><a href="">发布商品</a></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body" style="line-height: 0;">
+    <!-- 内容主体区域 -->
+    <!--<div  id = "content" style="padding: 15px;">内容主体区域</div>-->
+    <iframe id="frame" src="" width="100%" height="100%" frameborder="0" marginwidth="50" marginheight="50"  scrolling="false"></iframe>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    © layui.com - 底部固定区域
+  </div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/layui.js"></script>
+<script src="/js/fullScreen.js"></script>
+<script>
+//JavaScript代码区域
+layui.use(['element','layer'], function(){
+  var element = layui.element
+          ,layer = layui.layer;
+
+});
+
+//切换为在线示例样式
+$('#a-style-demo').on('click', function(){
+  $("#l-style").remove()
+  $('#d-left').attr('class','layui-side layui-bg-black')
+  $('#l-demo').attr('style','')
+
+  $("#header-logo").attr("style","display:block");//显示div
+  $("#scroll-logo").attr("style","display:none;");//隐藏div
+});
+
+//切换为后台模板样式
+$('#a-style-temp').on('click', function(){
+  $('head').append("<link id=\"l-style\" rel=\"stylesheet\" href=\'/css/admin.css\'>")
+  $('#d-left').attr('class','layui-side layui-side-menu')
+
+  $("#header-logo").attr("style","display:none");//隐藏div
+  $("#scroll-logo").attr("style","display:block;");//显示div
+
+});
+
+$('#a-button').on('click', function(){
+  $('#frame').attr('src','/layui/button')
+});
+
+
+$('#a-form').on('click', function(){
+  $('#frame').attr('src','/layui/form')
+});
+
+$('#a-nav').on('click', function(){
+  $('#frame').attr('src','/layui/nav')
+});
+
+$('#a-tab').on('click', function(){
+  $('#frame').attr('src','/layui/tab')
+});
+
+$('#a-icon').on('click', function(){
+  $('#frame').attr('src','/layui/icon')
+});
+
+$('#a-badge').on('click', function(){
+    $('#frame').attr('src','/layui/badge')
+});
+
+$('#a-progress').on('click', function(){
+    $('#frame').attr('src','/layui/progress')
+});
+
+$('#a-anim').on('click', function(){
+  $('#frame').attr('src','/layui/anim')
+});
+
+
+$('#a-panel').on('click', function(){
+  $('#frame').attr('src','/layui/panel')
+});
+
+$('#a-auxiliar').on('click', function(){
+    $('#frame').attr('src','/layui/auxiliar')
+});
+
+$('#a-laydate').on('click', function(){
+  $('#frame').attr('src','/layui/laydate')
+});
+
+$('#a-layer').on('click', function(){
+  $('#frame').attr('src','/layui/layer')
+});
+
+$('#a-upload').on('click', function(){
+  $('#frame').attr('src','/layui/upload')
+});
+
+$('#a-code').on('click', function(){
+  $('#frame').attr('src','/layui/code')
+});
+
+
+$('#a-table').on('click', function(){
+  $('#frame').attr('src','/layui/table')
+});
+
+$('#a-utable').on('click', function(){
+  $('#frame').attr('src','/layui/user')
+});
+
+$('#a-user').on('click', function(){
+  $('#frame').attr('src','/layui/user/?id=202005250001')
+});
+
+$('#a-userinfo').on('click', function(){
+  $('#frame').attr('src','/layui/user/?id=202005250001')
+});
+
+$('#a-idcard-shell').on('click', function(){
+  $('#frame').attr('src','/layui/idCard-shell')
+});
+
+</script>
+</body>
+</html>

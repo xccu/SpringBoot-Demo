@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ID卡</title>
+    <link rel="stylesheet" href="/css/layui.css">
+</head>
+<body style="padding-left: 50px;">
+
+<div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>ID卡信息</legend>
+    </fieldset>
+    <div style="width: 500px">
+        <iframe id="f-idcard" src="" width="428px" height="270px" frameborder="0"  scrolling="false"></iframe>
+    </div>
+</div>
+
+</body>
+
+<script src="/layui.js"></script>
+<script src="/js/jquery.min.js" charset="utf-8"></script>
+<script>
+    $('#f-idcard').attr('src','user/idCard?id=202005250001');
+
+    layui.use('layer', function(){
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+    });
+</script>
+</html>
