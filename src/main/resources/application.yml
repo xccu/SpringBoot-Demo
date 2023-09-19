@@ -1,0 +1,18 @@
+# DataSource Config
+spring:
+  datasource:
+    #h2数据源
+    h2:
+      driver-class-name: org.h2.Driver
+      schema: classpath:schema.sql
+      data: classpath:data.sql
+      url: jdbc:h2:mem:test
+      username: root
+      password: test
+
+    #mysql数据源
+    mysql:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=false
+      username: root
+      password: 123456

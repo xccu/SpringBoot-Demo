@@ -1,0 +1,23 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS Audit_User;
+
+CREATE TABLE user(
+    id INT(6) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name CHAR(50) NULL,
+    password CHAR(50) NULL,
+    age INT(6) NOT NULL,
+    gender CHAR(50) NULL,
+    race CHAR(50) NULL
+);
+
+
+CREATE TABLE Audit_User(
+    id INT(6) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    NAME CHAR(50) NULL,
+    PASSWORD CHAR(50) NULL,
+    age INT(6) NOT NULL,
+    gender CHAR(50) NULL,
+    race CHAR(50) NULL,
+    createTime DATE NULL,
+    updateTime DATE NULL
+);
