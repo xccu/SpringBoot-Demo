@@ -185,10 +185,10 @@ public class UserController {
         user.setId("202005250001");
         user.setName("Weslie");
         user.setAge(12);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/weslie.jpg");
         user.setEmail("Weslie@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -196,10 +196,10 @@ public class UserController {
         user.setId("202005250002");
         user.setName("Wolffy");
         user.setAge(34);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/wolffy.jpg");
         user.setEmail("wolffy@cpe.com");
-        user.setNational("wf");
+        user.setRace("Lupo");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -207,10 +207,10 @@ public class UserController {
         user.setId("202005250003");
         user.setName("Tibbie");
         user.setAge(11);
-        user.setSex("female");
+        user.setGender("female");
         user.setAvatarUrl("/avatar/tibbie.jpg");
         user.setEmail("tibbie@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -218,10 +218,10 @@ public class UserController {
         user.setId("202005250004");
         user.setName("Sparky");
         user.setAge(12);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/sparky.jpg");
         user.setEmail("sparky@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -229,10 +229,10 @@ public class UserController {
         user.setId("202005250005");
         user.setName("Paddi");
         user.setAge(10);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/paddi.jpg");
         user.setEmail("paddi@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -240,10 +240,10 @@ public class UserController {
         user.setId("202005250006");
         user.setName("Jonie");
         user.setAge(12);
-        user.setSex("female");
+        user.setGender("female");
         user.setAvatarUrl("/avatar/jonie.jpg");
         user.setEmail("jonie@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -251,10 +251,10 @@ public class UserController {
         user.setId("202005250007");
         user.setName("Slowy");
         user.setAge(70);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/slowy.jpg");
         user.setEmail("slowy@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -262,10 +262,10 @@ public class UserController {
         user.setId("202005250008");
         user.setName("Wolnie");
         user.setAge(33);
-        user.setSex("female");
+        user.setGender("female");
         user.setAvatarUrl("/avatar/wolnie.jpg");
         user.setEmail("wolnie@cpe.com");
-        user.setNational("wf");
+        user.setRace("Lupo");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -273,10 +273,10 @@ public class UserController {
         user.setId("202005250009");
         user.setName("Wilie");
         user.setAge(5);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/wilie.jpg");
         user.setEmail("wilie@cpe.com");
-        user.setNational("wf");
+        user.setRace("Lupo");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -285,10 +285,10 @@ public class UserController {
         user.setId("202005250010");
         user.setName("Weslie");
         user.setAge(12);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/weslie.jpg");
         user.setEmail("weslie@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -296,10 +296,10 @@ public class UserController {
         user.setId("202005250011");
         user.setName("Wolffy");
         user.setAge(34);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/wolffy.jpg");
         user.setEmail("wolffy@cpe.com");
-        user.setNational("wf");
+        user.setRace("Lupo");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -307,10 +307,10 @@ public class UserController {
         user.setId("202005250012");
         user.setName("Tibbie");
         user.setAge(11);
-        user.setSex("female");
+        user.setGender("female");
         user.setAvatarUrl("/avatar/tibbie.jpg");
         user.setEmail("tibbie@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -318,10 +318,10 @@ public class UserController {
         user.setId("202005250013");
         user.setName("Sparky");
         user.setAge(12);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/sparky.jpg");
         user.setEmail("sparky@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -329,10 +329,10 @@ public class UserController {
         user.setId("202005250014");
         user.setName("Paddi");
         user.setAge(10);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/paddi.jpg");
         user.setEmail("paddi@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -340,10 +340,10 @@ public class UserController {
         user.setId("202005250015");
         user.setName("Jonie");
         user.setAge(12);
-        user.setSex("female");
+        user.setGender("female");
         user.setAvatarUrl("/avatar/jonie.jpg");
         user.setEmail("jonie@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -351,10 +351,10 @@ public class UserController {
         user.setId("202005250016");
         user.setName("Slowy");
         user.setAge(70);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/slowy.jpg");
         user.setEmail("slowy@cpe.com");
-        user.setNational("gt");
+        user.setRace("Caprinae");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -362,9 +362,9 @@ public class UserController {
         user.setId("202005250017");
         user.setName("Wolnie");
         user.setAge(33);
-        user.setSex("female");
+        user.setGender("female");
         user.setAvatarUrl("/avatar/wolnie.jpg");
-        user.setNational("wf");
+        user.setRace("Lupo");
         user.setTel("(123) 456-7890");
         userList.add(user);
 
@@ -372,10 +372,10 @@ public class UserController {
         user.setId("202005250018");
         user.setName("Wilie");
         user.setAge(5);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/wilie.jpg");
         user.setEmail("wilie@cpe.com");
-        user.setNational("wf");
+        user.setRace("Lupo");
         user.setTel("(123) 456-7890");
         userList.add(user);
 

@@ -25,7 +25,7 @@ public class HomeController {
         user.setId("202002250001");
         user.setName("Weslie");
         user.setAge(12);
-        user.setSex("male");
+        user.setGender("male");
         user.setAvatarUrl("/avatar/weslie.jpg");
         model.addAttribute("user", user);
 
