@@ -1,0 +1,1 @@
+静态资源默认位于resources-static目录下
