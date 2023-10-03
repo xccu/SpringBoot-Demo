@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+# 日志路径
+logging:
+  file:
+    path: ../logs/
+
