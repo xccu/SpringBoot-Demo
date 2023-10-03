@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>饼图-1</title>
+
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px;"></div>
+</body>
+</html>
+
+<!-- 引入 echarts.min.js -->
+<script th:src="@{/js/echarts.min.js}"></script>
+<script>
+    //绘制饼图
+    echarts.init(document.getElementById('main')).setOption({
+        title: {
+            text: 'ECharts 饼图示例',
+            x: 'center',
+            y: 0,
+        },
+        //提示框样式
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        //定义图例
+        legend: {
+            type: 'scroll',
+            top: 20,
+
+        },
+        series: {
+            name: "比例",
+            type: 'pie',
+            data: [
+                { name: 'A', value: 70 },
+                { name: 'B', value: 68 },
+                { name: 'C', value: 48 },
+                { name: 'D', value: 40 },
+                { name: 'E', value: 32 }
+            ],
+            //设置饼状图每个颜色块的颜色
+            color: ['#4ECDC4', '#FCB322', '#FF6B6B', '#4FC1E9', '#444C57']
+        }
+    });
+</script>
