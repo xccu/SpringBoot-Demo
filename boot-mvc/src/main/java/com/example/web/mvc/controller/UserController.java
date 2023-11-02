@@ -7,7 +7,6 @@ import com.example.web.mvc.service.APIService;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,8 +56,7 @@ public class UserController {
      * @return
      */
     @GetMapping(path = "/detail")
-    public String userDetail(String id,Model model){
-
+    public String userDetail(String id,Model model) {
         List<UserDto> users= getUserList();
         UserDto user = users.stream().filter(t->t.getId().equals(id)).findFirst().orElse(null);
 
@@ -67,6 +64,15 @@ public class UserController {
         model.addAttribute("user", user);
 
         return "application/userDetail";
+    }
+
+
+    @GetMapping(path = "/err")
+    public String error() throws Exception {
+
+        int a = 10/0;
+        return "/";
+        //throw new Exception("this is a test");
     }
 
     /**

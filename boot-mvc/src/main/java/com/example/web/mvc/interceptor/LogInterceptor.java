@@ -63,7 +63,9 @@ public class LogInterceptor implements HandlerInterceptor {
             log.info("afterCompletion执行");
         }
         else{
-            log.info("afterCompletion执行异常{}",ex);
+            log.info("afterCompletion执行异常");
+            log.info("\t message:"+ex.getMessage());
+            log.info("\t StackTrace:"+ex.getStackTrace().toString());
         }
 
     }
