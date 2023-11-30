@@ -38,8 +38,8 @@ public class TestController {
     @PostFilter("filterObject.username == 'admin1'")
     public List<User> getAllUser(){
         ArrayList<User> list = new ArrayList<>();
-        list.add(new User(11,"admin1","6666"));
-        list.add(new User(21,"admin2","888"));
+        //list.add(new User(11,"admin1","6666"));
+        //list.add(new User(21,"admin2","888"));
         System.out.println(list);
         return list;
     }
