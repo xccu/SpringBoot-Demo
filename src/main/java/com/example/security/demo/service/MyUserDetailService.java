@@ -32,8 +32,8 @@ public class MyUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("user not found");
         }
 
-        //权限
-        List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("role");
-       return new org.springframework.security.core.userdetails.User(user.getName(), new BCryptPasswordEncoder().encode(user.getPassword()),auths);
+        //权限设置
+        List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("admin,ROLE_sale");
+        return new org.springframework.security.core.userdetails.User(user.getName(), new BCryptPasswordEncoder().encode(user.getPassword()),auths);
     }
 }

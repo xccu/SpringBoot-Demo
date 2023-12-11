@@ -1,6 +1,7 @@
 package com.example.security.demo.controller;
 
 import com.example.security.demo.entity.User;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,26 +16,28 @@ import java.util.List;
 public class TestController {
 
     @GetMapping("hello")
+    //@Secured({"admin","ROLE_sale"})
     public String hello() {
         return "hello security";
     }
 
     @GetMapping("index")
+    @Secured({"admin","ROLE_sale"})  //测试注解
     public String index() {
         return "hello index";
     }
 
     @GetMapping("update")
     //@Secured({"ROLE_sale","ROLE_manager"})
-    //@PreAuthorize("hasAnyAuthority('admins')")
-    @PostAuthorize("hasAnyAuthority('admins')")
+    //@PreAuthorize("hasAnyAuthority('admin')")
+    @PostAuthorize("hasAnyAuthority('admin')")
     public String update() {
         System.out.println("update......");
         return "hello update";
     }
 
     @GetMapping("getAll")
-    @PostAuthorize("hasAnyAuthority('admins')")
+    @PostAuthorize("hasAnyAuthority('admin')")
     @PostFilter("filterObject.username == 'admin1'")
     public List<User> getAllUser(){
         ArrayList<User> list = new ArrayList<>();
