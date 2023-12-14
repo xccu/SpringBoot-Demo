@@ -11,3 +11,25 @@ https://www.bilibili.com/video/BV15a411A7kP?p=24&vd_source=2cb0ef00b48f8857a3fd1
   --service
     --service_account   实现权限管理功能代码
 
+
+环境部署：
+Redis
+  启动命令：
+  redis-server.exe
+
+  port: 6379
+  pid:  15388
+  host: 127.0.0.1
+
+Nacos
+  https://blog.csdn.net/xiaojin21cen/article/details/125993132
+  启动：
+  \nacos-server-1.1.4\nacos\bin\startup.cmd
+  访问地址：
+  http://localhost:8848/nacos
+
+  user: nacos
+  psd:  nacos
+
+  Port: 8848
+
