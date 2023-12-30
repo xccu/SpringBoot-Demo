@@ -24,9 +24,9 @@ import java.util.ArrayList;
 
 public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
-    private TokenManager tokenManager;
-    private RedisTemplate redisTemplate;
-    private AuthenticationManager authenticationManager;
+    private TokenManager tokenManager;                      //token操作工具类
+    private RedisTemplate redisTemplate;                    //redis模板类
+    private AuthenticationManager authenticationManager;    //认证管理类
 
     public TokenLoginFilter(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate) {
         this.authenticationManager = authenticationManager;
@@ -42,7 +42,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
             throws AuthenticationException {
         //获取表单提交数据
         try {
-            User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
+            User user = new ObjectMapper().readValue(request.getInputStream(), User.class); //通过表单获取user实例
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword(),
                     new ArrayList<>()));
         } catch (IOException e) {

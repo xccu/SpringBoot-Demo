@@ -4,6 +4,7 @@ https://www.bilibili.com/video/BV15a411A7kP?p=24&vd_source=2cb0ef00b48f8857a3fd1
 
 |-micro_parent                          父工程pom文件，用于定义版本依赖
   |-common
+
     |-service_base                      编写使用工具类，如MD5加密等
       |-com.example.utils
         |-exceptionhandler
@@ -17,8 +18,14 @@ https://www.bilibili.com/video/BV15a411A7kP?p=24&vd_source=2cb0ef00b48f8857a3fd1
           |-ResponseUtils.java          数据返回
         |-RedisConfig.java              Redis工具类
         |-SwaggerConfig.java            Swagger工具类
+
     |-spring_security                   SpringSecurity相关配置
       |-com.example.security
+        |-config
+          |-TokenWebSecurityConfig.java 核心配置类
+        |-entity
+          |-SecurityUser.java           用户认证实体类
+          |-User.java                   用户实体类
         |-filter
           |-TokenLoginFilter            认证（登录）过滤器
           |-TokenAuthFilter             授权过滤器
@@ -27,10 +34,19 @@ https://www.bilibili.com/video/BV15a411A7kP?p=24&vd_source=2cb0ef00b48f8857a3fd1
           |-TokenManager.java           token操作工具类（使用JWT生成）
           |-TokenLogoutHandler.java     退出登录处理类
           |-UnauthEntryPoint.java       未授权统一处理类
+
   |-infrastructure
     |-api_gateway                       配置gateway网关
+
   |-service
     |-service_account                   实现权限管理功能代码
+      |-com.example.accountservice
+        |-controller
+        |-entity
+        |-helper
+        |-mapper
+        |-servie
+        |-ServiceAclApplication.java      service_account 启动入口类
 
 
 环境部署：
