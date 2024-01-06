@@ -32,29 +32,35 @@ public class User implements Serializable {
     private String id;
 
     @ApiModelProperty(value = "微信openid")
+    @TableField("user_name")
     private String username;
 
     @ApiModelProperty(value = "密码")
+    @TableField("password")
     private String password;
 
     @ApiModelProperty(value = "昵称")
+    @TableField("nick_name")
     private String nickName;
 
     @ApiModelProperty(value = "用户头像")
+    @TableField("salt")
     private String salt;
 
     @ApiModelProperty(value = "用户签名")
+    @TableField("token")
     private String token;
 
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
+    @TableField("is_deleted")
     private Boolean isDeleted;
 
     @ApiModelProperty(value = "创建时间")
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(value = "gmt_create",fill = FieldFill.INSERT)
     private Date gmtCreate;
 
     @ApiModelProperty(value = "更新时间")
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "gmt_modified",fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
 

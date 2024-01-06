@@ -24,20 +24,25 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //根据用户名查询数据
-        User user = userService.selectByUsername(username);
-        //判断
-        if(user == null) {
-            throw new UsernameNotFoundException("用户不存在");
-        }
-        com.example.security.entity.User curUser = new com.example.security.entity.User();
-        BeanUtils.copyProperties(user,curUser);
+        try{
+            //根据用户名查询数据
+            User user = userService.selectByUsername(username);
+            //判断
+            if(user == null) {
+                throw new UsernameNotFoundException("用户不存在");
+            }
+            com.example.security.entity.User curUser = new com.example.security.entity.User();
+            BeanUtils.copyProperties(user,curUser);
 
-        //根据用户查询用户权限列表
-        List<String> permissionValueList = permissionService.selectPermissionValueByUserId(user.getId());
-        SecurityUser securityUser = new SecurityUser();
-        securityUser.setCurrentUserInfo(curUser);
-        securityUser.setPermissionValueList(permissionValueList);
-        return securityUser;
+            //根据用户查询用户权限列表
+            List<String> permissionValueList = permissionService.selectPermissionValueByUserId(user.getId());
+            SecurityUser securityUser = new SecurityUser();
+            securityUser.setCurrentUserInfo(curUser);
+            securityUser.setPermissionValueList(permissionValueList);
+            return securityUser;
+        }catch(Exception ex){
+            throw ex;
+        }
+
     }
 }

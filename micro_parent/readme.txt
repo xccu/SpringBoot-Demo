@@ -37,11 +37,17 @@ https://www.bilibili.com/video/BV15a411A7kP?p=24&vd_source=2cb0ef00b48f8857a3fd1
 
   |-infrastructure
     |-api_gateway                       配置gateway网关
+      |-com.example.gateway
+        |-CorsConfig.java               跨域配置类
 
   |-service
     |-service_account                   实现权限管理功能代码
       |-com.example.accountservice
         |-controller
+          |-IndexController.cs          登录用户信息控制器
+          |-PermissionController.cs     权限，菜单控制器
+          |-RoleController.cs           角色控制器
+          |-UserController.cs           用户控制器
         |-entity
         |-helper
         |-mapper
@@ -69,4 +75,19 @@ Nacos
   psd:  nacos
 
   Port: 8848
+
+Vue
+  环境：需要安装nodejs
+  启动命令:npm run dev
+  访问地址：
+  http://localhost:9528/
+
+  error:03000086 解决
+  https://blog.csdn.net/ddttxx/article/details/130827146
+  Windows 64-bit with Unsupported runtime解决方法
+  https://www.cnblogs.com/molice/p/16240363.html
+
+
+  启动顺序：
+  Redis->Nacos->api_gateway->service_account->Web
 

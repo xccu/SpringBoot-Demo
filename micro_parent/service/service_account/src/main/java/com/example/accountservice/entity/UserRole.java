@@ -32,20 +32,23 @@ public class UserRole implements Serializable {
     private String id;
 
     @ApiModelProperty(value = "角色id")
+    @TableField("role_id")
     private String roleId;
 
     @ApiModelProperty(value = "用户id")
+    @TableField("user_id")
     private String userId;
 
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
+    @TableField("user_name")
     private Boolean isDeleted;
 
     @ApiModelProperty(value = "创建时间")
-    @TableField(fill = FieldFill.INSERT)
+    @TableField(value="gmt_create",fill = FieldFill.INSERT)
     private Date gmtCreate;
 
     @ApiModelProperty(value = "更新时间")
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(value="gmt_modified",fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
 

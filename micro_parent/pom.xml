@@ -25,7 +25,7 @@
     <!--在工程中定义相关依赖版本-->
     <properties>
         <java.version>1.8</java.version>
-        <mybatis-plus.version>3.0.5</mybatis-plus.version>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
         <velocity.version>2.0</velocity.version>
         <swagger.version>2.7.0</swagger.version>
         <jwt.version>0.7.0</jwt.version>

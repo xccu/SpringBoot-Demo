@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableDiscoveryClient ////在Nacos中进行注册
 @ComponentScan("com.example")
 @MapperScan("com.example.accountservice.mapper")
 public class ServiceAclApplication {

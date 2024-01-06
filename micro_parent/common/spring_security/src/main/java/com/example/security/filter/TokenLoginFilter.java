@@ -67,7 +67,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     //3 认证失败调用的方法
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed)
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failedfailed)
             throws IOException, ServletException {
         ResponseUtil.out(response, R.error());
     }
