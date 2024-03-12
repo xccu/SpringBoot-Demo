@@ -11,22 +11,31 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 
-public class ESTest_Doc_Update {
+/**
+ * 6.修改文档
+ */
+public class ES_Doc_Update {
     public static void main(String[] args) throws Exception {
 
+        // 创建ES客户端
         RestHighLevelClient esClient = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("localhost", 9200, "http"))
         );
 
-        // 修改数据
+        // 修改文档 - 请求对象
         UpdateRequest request = new UpdateRequest();
+        // 配置修改参数
         request.index("user").id("1001");
+        // 设置请求体，对数据进行修改
         request.doc(XContentType.JSON, "sex", "女");
 
+        // 客户端发送请求，获取响应对象
         UpdateResponse response = esClient.update(request, RequestOptions.DEFAULT);
+        System.out.println("_index:" + response.getIndex());
+        System.out.println("_id:" + response.getId());
+        System.out.println("_result:" + response.getResult());
 
-        System.out.println(response.getResult());
-
+        // 关闭ES客户端
         esClient.close();
     }
 }

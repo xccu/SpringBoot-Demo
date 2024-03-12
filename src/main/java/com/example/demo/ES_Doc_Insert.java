@@ -11,17 +11,23 @@ import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.client.indices.GetIndexResponse;
 import org.elasticsearch.common.xcontent.XContentType;
 
-public class ESTest_Doc_Insert {
+/**
+ * 5.新增文档
+ */
+public class ES_Doc_Insert {
     public static void main(String[] args) throws Exception {
 
+        // 创建ES客户端
         RestHighLevelClient esClient = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("localhost", 9200, "http"))
         );
 
-        // 插入数据
+        // 新增文档 - 请求对象
         IndexRequest request = new IndexRequest();
+        // 设置索引及唯一性标识
         request.index("user").id("1001");
 
+        // 创建数据对象
         User user = new User();
         user.setName("zhangsan");
         user.setAge(30);
@@ -30,12 +36,18 @@ public class ESTest_Doc_Insert {
         // 向ES插入数据，必须将数据转换位JSON格式
         ObjectMapper mapper = new ObjectMapper();
         String userJson = mapper.writeValueAsString(user);
-        request.source(userJson, XContentType.JSON);
 
+        // 添加文档数据，数据格式为 JSON 格式
+        request.source(userJson, XContentType.JSON);
+        // 添加文档数据，数据格式为 JSON 格式
         IndexResponse response = esClient.index(request, RequestOptions.DEFAULT);
 
-        System.out.println(response.getResult());
+        //3.打印结果信息
+        System.out.println("_index:" + response.getIndex());
+        System.out.println("_id:" + response.getId());
+        System.out.println("_result:" + response.getResult());
 
+        // 关闭ES客户端
         esClient.close();
     }
 }

@@ -22,29 +22,39 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 
-public class ESTest_Doc_Query {
+/**
+ * 12.高级查询
+ */
+public class ES_Doc_Query {
     public static void main(String[] args) throws Exception {
 
+        // 创建ES客户端
         RestHighLevelClient esClient = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("localhost", 9200, "http"))
         );
 
         // 1. 查询索引中全部的数据
-//        SearchRequest request = new SearchRequest();
-//        request.indices("user");
-//
-//        request.source(new SearchSourceBuilder().query(QueryBuilders.matchAllQuery()));
-//
-//        SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
-//
-//        SearchHits hits = response.getHits();
-//
-//        System.out.println(hits.getTotalHits());
-//        System.out.println(response.getTook());
-//
-//        for ( SearchHit hit : hits ) {
-//            System.out.println(hit.getSourceAsString());
-//        }
+        SearchRequest request = new SearchRequest();
+        request.indices("user");
+
+        request.source(new SearchSourceBuilder().query(QueryBuilders.matchAllQuery()));
+
+        SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
+
+        // 查询匹配
+        SearchHits hits = response.getHits();
+        System.out.println("took:" + response.getTook());
+        System.out.println("timeout:" + response.isTimedOut());
+        System.out.println("total:" + hits.getTotalHits());
+        System.out.println("MaxScore:" + hits.getMaxScore());
+        System.out.println("hits========>>");
+        for (SearchHit hit : hits) {
+            //输出每条查询的结果信息
+            System.out.println(hit.getSourceAsString());
+        }
+        System.out.println("<<========");
+
+
 
         // 2. 条件查询 : termQuery
 //        SearchRequest request = new SearchRequest();
@@ -243,7 +253,7 @@ public class ESTest_Doc_Query {
 //        }
 
         // 11. 分组查询
-        SearchRequest request = new SearchRequest();
+        /*SearchRequest request = new SearchRequest();
         request.indices("user");
 
         SearchSourceBuilder builder = new SearchSourceBuilder();
@@ -261,10 +271,10 @@ public class ESTest_Doc_Query {
 
         for ( SearchHit hit : hits ) {
             System.out.println(hit.getSourceAsString());
-        }
+        }*/
 
 
-
+        // 关闭ES客户端
         esClient.close();
     }
 }

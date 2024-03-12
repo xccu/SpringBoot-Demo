@@ -10,20 +10,31 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 
-public class ESTest_Doc_Get {
+/**
+ * 7.查询文档
+ */
+public class ES_Doc_Get {
     public static void main(String[] args) throws Exception {
 
+        // 创建ES客户端
         RestHighLevelClient esClient = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("localhost", 9200, "http"))
         );
 
-        // 查询数据
+        //1.创建请求对象
         GetRequest request = new GetRequest();
         request.index("user").id("1001");
+
+        //2.客户端发送请求，获取响应对象
         GetResponse response = esClient.get(request, RequestOptions.DEFAULT);
 
-        System.out.println(response.getSourceAsString());
+        //3.打印结果信息
+        System.out.println("_index:" + response.getIndex());
+        System.out.println("_type:" + response.getType());
+        System.out.println("_id:" + response.getId());
+        System.out.println("source:" + response.getSourceAsString());
 
+        // 关闭ES客户端
         esClient.close();
     }
 }
