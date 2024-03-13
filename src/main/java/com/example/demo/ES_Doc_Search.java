@@ -19,7 +19,7 @@ import java.util.Iterator;
 /**
  * 11.查询所有索引数据
  */
-public class ESTest_Doc_Search {
+public class ES_Doc_Search {
     public static void main(String[] args) throws Exception {
 
         // 创建ES客户端
